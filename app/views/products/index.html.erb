@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+    <!-- Page Content -->
+    <div class="container">
+
+    <% @productCount = 0%>
+    <% @products.each do |product| %>
+
+        <% if @productCount % 3 == 0 %>
+        <div class="row">
+        <% end %>
+           <div class="col-md-4">
+                        <div class="thumbnail">
+                            <img src="http://placehold.it/320x150" alt="">
+                            <div class="caption">
+                                <h4 class="pull-right"><%= product.price %></h4>
+                                <h4><a href="#"><%= product.name %></a>
+                                </h4>
+                                <p><%= product.description %></p>
+                                <p><%= link_to 'Show', product %><br>
+                                <%= link_to 'Edit', edit_product_path(product) %><br>
+                                <%= link_to 'Destroy', product, method: :delete,
+                                    data: { confirm: 'Are you sure', } %><br>
+                                <%= @productCount %><br>
+                                <%= @productCount % 3 %>
+                            </div>                    
+                        </div>
+                    </div>
+                    <% if @productCount % 3 == 2 %>
+                    </div>
+                    <% end %>
+    <% @productCount += 1 %>
+    <% end %>
+     
+    <br>
+            <h4 class="pull-right"><%= link_to 'New Product', new_product_path %>
+
